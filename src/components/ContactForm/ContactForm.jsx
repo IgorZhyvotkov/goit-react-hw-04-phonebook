@@ -1,4 +1,6 @@
-import { Formik, Form, Field } from 'formik';
+import PropTypes from 'prop-types';
+import { Formik, Form } from 'formik';
+import { Label, Input, Button, FormS } from './ContactForm.styled';
 
 const initialValues = { name: '', number: '' };
 
@@ -11,10 +13,10 @@ function ContactForm({ onAddContact }) {
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <Form>
+      <FormS>
         <div>
-          <label htmlFor="name">Name</label>
-          <Field
+          <Label htmlFor="name">Name</Label>
+          <Input
             type="name"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -23,8 +25,8 @@ function ContactForm({ onAddContact }) {
           />
         </div>
         <div>
-          <label htmlFor="number">Number</label>
-          <Field
+          <Label htmlFor="number">Number</Label>
+          <Input
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -32,10 +34,14 @@ function ContactForm({ onAddContact }) {
             required
           />
         </div>
-        <button type="submit">Add contact</button>
-      </Form>
+        <Button type="submit">Add contact</Button>
+      </FormS>
     </Formik>
   );
 }
+
+ContactForm.propTypes = {
+  onAddContact: PropTypes.func.isRequired,
+};
 
 export default ContactForm;

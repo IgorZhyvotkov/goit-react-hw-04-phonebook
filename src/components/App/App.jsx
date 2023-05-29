@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Container } from './App.styled';
+import { Container, Title } from './App.styled';
 import { nanoid } from 'nanoid';
 
 import ContactForm from 'components/ContactForm';
@@ -22,8 +22,7 @@ class App extends Component {
   onAddContact = inputVelues => {
     const { contacts } = this.state;
     const id = nanoid();
-    const newContact = {id, ...inputVelues}
-    
+    const newContact = { id, ...inputVelues };
 
     for (let contact of contacts) {
       if (inputVelues.name.toLowerCase() === contact.name.toLowerCase()) {
@@ -60,17 +59,15 @@ class App extends Component {
     return (
       <Container>
         <h1>Phonebook</h1>
-
         <ContactForm onAddContact={this.onAddContact} />
 
-        <h2>Contacts</h2>
-
+        <Title>Contacts</Title>
         <Filter value={filter} onChange={this.changeFilter} />
-
         <ContactList
           list={this.visibleContact()}
           onDeleteContact={this.deleteContact}
         />
+        
       </Container>
     );
   }
