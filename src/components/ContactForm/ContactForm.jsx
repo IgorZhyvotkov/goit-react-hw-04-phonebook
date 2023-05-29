@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
 import { Label, Input, Button, FormS } from './ContactForm.styled';
 
 const initialValues = { name: '', number: '' };
