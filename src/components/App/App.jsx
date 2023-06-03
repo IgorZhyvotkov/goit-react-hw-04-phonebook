@@ -19,6 +19,19 @@ const INITIAL_STATE_APP = {
 class App extends Component {
   state = { ...INITIAL_STATE_APP };
 
+  componentDidMount(){
+    const contacts = localStorage.getItem('contacts')
+    const parsedContacts = JSON.parse(contacts)
+
+    this.setState({contacts: parsedContacts})
+  }
+
+  componentDidUpdate( prevProps, prevState){
+    if(this.state.contacts !== prevState.contacts){
+      localStorage.setItem('contacts' , JSON.stringify(this.state.contacts))
+    }
+  }
+
   onAddContact = inputVelues => {
     const { contacts } = this.state;
     const id = nanoid();
