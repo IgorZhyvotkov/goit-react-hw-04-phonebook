@@ -6,7 +6,6 @@ const initialValues = { name: '', number: '' };
 
 function ContactForm({ onAddContact }) {
   const handleSubmit = (velues, { resetForm }) => {
-    console.log(velues);
     onAddContact(velues);
     resetForm();
   };
