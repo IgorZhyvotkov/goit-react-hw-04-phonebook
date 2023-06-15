@@ -15,22 +15,21 @@ const INITUAL_STATE = [
 
 function App() {
   const [contacts, setContacts] = useState(
-    () =>
-      JSON.parse(window.localStorage.getItem('contacts')) ?? INITUAL_STATE
+    () => JSON.parse(window.localStorage.getItem('contacts')) ?? INITUAL_STATE
   );
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
-  });
+  }, [contacts]);
 
   const onAddContact = inputVelues => {
     const id = nanoid();
     const newContact = { id, ...inputVelues };
 
-    if(contacts.find(contact => contact.name === inputVelues)) {      
-        alert(`${inputVelues.name} is already in contacts`);
-        return;      
+    if (contacts.find(contact => contact.name === inputVelues)) {
+      alert(`${inputVelues.name} is already in contacts`);
+      return;
     }
 
     setContacts(prevState => [newContact, ...prevState]);
